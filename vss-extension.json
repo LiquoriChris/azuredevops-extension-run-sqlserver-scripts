@@ -1,0 +1,71 @@
+{
+	"manifestVersion": 1,
+	"id": "run-sqlserver-scripts",
+	"name": "Run SQL Server Database Scripts",
+	"description": "Executes SQL Server scripts using the DbaTools module.",
+	"version": "0.0.1",
+	"publisher": "liquorichris",
+	"public":  false,
+	"baseUri": "https://github.com/pwshliquori",
+	"scopes": [],
+	"tags": [
+		"SQLServer",
+		"sql"
+	],
+	"links": {
+		"home": {
+			"uri": "https://github.com/pwshliquori/azuredevops-extension-run-sqlserver-scripts"
+		},
+		"learn": {
+			"uri": "https://github.com/pwshliquori/azuredevops-extension-run-sqlserver-scripts"
+		},
+		"support": {
+			"uri": "https://github.com/pwshliquori/azuredevops-extension-run-sqlserver-scripts/issues"
+		},
+		"repository": {
+			"uri": "https://github.com/pwshliquori/azuredevops-extension-run-sqlserver-scripts"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"uri": "https://github.com/pwshliquori/azuredevops-extension-run-sqlserver-scripts"
+	},
+	"branding": {
+		"color": "rgb(0, 114, 186)",
+		"theme": "dark"
+	},
+	"targets": [
+		{
+			"id": "Microsoft.VisualStudio.Services"
+		}
+	],
+	"categories": [
+		"Azure Pipelines"
+	],
+	"icons": {
+		"default": "logo.png"
+	},
+	"files": [
+		{ "path": "Task" }
+	],
+	"content": {
+		"details": {
+			"path": "overview.md"
+		},
+		"license": {
+			"path": "license.md"
+		}
+	},
+	"contributions": [
+		{
+			"id": "run-sqlserver-scripts",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "Task"
+			}
+		}
+	]
+}
