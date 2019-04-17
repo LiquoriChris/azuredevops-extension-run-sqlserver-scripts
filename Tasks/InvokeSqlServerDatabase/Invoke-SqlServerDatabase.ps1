@@ -7,7 +7,7 @@ $Password = Get-VstsInput -Name 'password' -Require
 $DatabaseName = Get-VstsInput -Name 'databaseName' -Require
 $SqlInstance = Get-VstsInput -Name 'sqlInstance' -Require
 $LogPath = Get-VstsInput -Name 'logPath'
-$Copy = Get-VstsInput -Name 'copy' -Default true
+$Copy = Get-VstsInput -Name 'copy'
 
 . $PSScriptRoot\HelperFunctions.ps1
 
@@ -19,13 +19,22 @@ if ($SqlPath) {
             File = $SqlFile
             SqlInstance = $SqlInstance
             Database = $DatabaseName
-            SqlCrednetial = $Credential
+            SqlCredential = $Credential
             EnableException = $true
             AppendServerInstance = $true
             ErrorAction = 'Stop'
         }
         Try {
-            Invoke-DbaQuery @Params
+            if ($LogPath) {
+                $SqlFileName = (Get-ChildItem -Path $SqlFile).Name
+                Invoke-DbaQuery @Params |Tee-Object -LiteralPath "$LogPath\$($SqlFileName).log"
+                if ($Copy -eq 'true') {
+                    _Copy -Path $SqlFile -Destination $LogPath
+                }
+            }
+            else {
+                Invoke-DbaQuery @Params
+            }
         }
         Catch {
             throw $_ 
