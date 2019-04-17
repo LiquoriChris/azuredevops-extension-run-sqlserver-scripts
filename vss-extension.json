@@ -3,9 +3,9 @@
 	"id": "run-sqlserver-scripts",
 	"name": "Run SQL Server Scripts",
 	"description": "Executes SQL Server scripts using the DbaTools module.",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"publisher": "liquorichris",
-	"public":  false,
+	"public":  true,
 	"baseUri": "https://github.com/pwshliquori",
 	"scopes": [],
 	"tags": [
