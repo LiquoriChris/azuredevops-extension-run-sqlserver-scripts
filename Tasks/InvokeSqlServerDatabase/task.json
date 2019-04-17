@@ -1,33 +1,28 @@
 {
 	"id": "e52a32de-e740-4343-a0c6-f80146ba6857",
 	"name": "RunSQLServerScripts",
-	"friendlyName": "Run SQL Server Database Scripts",
+	"friendlyName": "Run SQL Server Scripts",
 	"description": "Executes SQL Server database scripts using the DbaTools module commandline tool.",
 	"author": "pwshliquori",
-	"helpMarkDown": "Executes SQL Server database scripts using the DbaTools module commandline tool",
+	"helpMarkDown": "",
 	"category": "Deploy",
 	"visibility": [
 		"Release"
 	],
-	"demands": ["Invoke-DbaQuery"],
+	"demands": ["dbatools"],
 	"version": {
         "Major": "0",
         "Minor": "0",
-        "Patch": "1"
+        "Patch": "9"
 	},
 	"groups": [
-		{
-			"name": "Options",
-			"displayName": "SQLPlus Options",
-			"isExpanded": false
-		},
 		{
 			"name": "logOptions",
 			"displayName": "Log Options",
 			"isExpanded": false
 		}
 	],
-	"instanceNameFormat": "Run SQL Server Database Scripts",
+	"instanceNameFormat": "Run SQL Server Scripts",
 	"inputs": [
 		{
 			"name": "scriptPath",
@@ -36,6 +31,21 @@
 			"defaultValue": "$(System.DefaultWorkingDirectory)",
 			"required": true,
 			"helpMarkDown": "Path of the SQL Server scripts."
+		},
+		{
+			"name": "sqlInstance",
+			"type": "string",
+			"label": "SQL Instance",
+			"required": true,
+			"helpMarkDown": "SQL Server instance name"  
+		},
+		{
+			"name": "databaseName",
+			"type": "string",
+			"label": "Database Name",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "Name of database for script to run on."	
 		},
 		{
 			"name": "user",
@@ -54,21 +64,6 @@
 			"helpMarkDown": "Password to connect to the SQL Server database. It is recommended to store the password is a secured variable or upload a secure file."
 		},
 		{
-			"name": "databaseName",
-			"type": "string",
-			"label": "Database Name",
-			"defaultValue": "",
-			"required": true,
-			"helpMarkDown": "Name of database for script to run on."	
-		},
-		{
-			"name": "sqlInstance",
-			"type": "string",
-			"label": "SQL Instance",
-			"required": true,
-			"helpMarkDown": "SQL Server instance name"  
-		},
-		{
 			"name": "logPath",
 			"type": "textbox",
 			"label": "Log Path",
@@ -81,7 +76,7 @@
 			"name": "copy",
 			"type": "boolean",
 			"label": "Copy sql files to log",
-			"defaultValue": true,
+			"defaultValue": false,
 			"required": false,
 			"groupName": "logOptions",
 			"helpMarkDown": "Copy .sql files to the log path."
