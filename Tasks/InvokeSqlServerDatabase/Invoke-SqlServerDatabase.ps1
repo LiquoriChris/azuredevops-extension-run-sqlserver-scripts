@@ -8,6 +8,7 @@ $DatabaseName = Get-VstsInput -Name 'databaseName' -Require
 $SqlInstance = Get-VstsInput -Name 'sqlInstance' -Require
 $LogPath = Get-VstsInput -Name 'logPath'
 $Copy = Get-VstsInput -Name 'copy'
+$NullFilesError = Get-VstsInput -Name 'failOnNullFiles'
 
 . $PSScriptRoot\HelperFunctions.ps1
 
@@ -42,5 +43,8 @@ if ($SqlPath) {
     }
 }
 else {
+    if ($NullFilesError -eq 'true') {
+        throw "No sql files exist at $ScriptPath"
+    }
     return "No sql files exist at $ScriptPath"
 }

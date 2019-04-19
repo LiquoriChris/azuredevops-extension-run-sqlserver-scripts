@@ -13,12 +13,17 @@
 	"version": {
         "Major": "0",
         "Minor": "0",
-        "Patch": "9"
+        "Patch": "12"
 	},
 	"groups": [
 		{
 			"name": "logOptions",
 			"displayName": "Log Options",
+			"isExpanded": false
+		},
+		{
+			"name": "advanced",
+			"displayName": "Advanced",
 			"isExpanded": false
 		}
 	],
@@ -80,7 +85,16 @@
 			"required": false,
 			"groupName": "logOptions",
 			"helpMarkDown": "Copy .sql files to the log path."
-		}
+		},
+		{
+            "name": "failOnNullFiles",
+            "type": "boolean",
+            "label": "Fail on missing sql files",
+            "required": false,
+            "defaultValue": "false",
+            "helpMarkDown": "If this is true, this task will fail if there are no sql files in the script path. If this is false, task will write \"No sql files exist\" to console.",
+            "groupName": "advanced"
+        }
 	],
 	"execution": {
 		"PowerShell3": {
